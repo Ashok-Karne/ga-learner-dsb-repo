@@ -353,6 +353,24 @@ async def get_stats(username: str = Depends(get_current_admin)):
 async def root():
     return {"message": "Maitreyee Hydro Systems API"}
 
+# File Upload Route
+@api_router.post("/upload")
+async def upload_file(file: UploadFile = File(...), username: str = Depends(get_current_admin)):
+    # Generate unique filename
+    file_extension = file.filename.split('.')[-1]
+    unique_filename = f"{uuid.uuid4()}.{file_extension}"
+    file_path = UPLOAD_DIR / unique_filename
+    
+    # Save file
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
+    # Return URL (will be accessible via /uploads/filename)
+    backend_url = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')
+    file_url = f"{backend_url}/uploads/{unique_filename}"
+    
+    return {"url": file_url, "filename": unique_filename}
+
 # Include the router in the main app
 app.include_router(api_router)
 
