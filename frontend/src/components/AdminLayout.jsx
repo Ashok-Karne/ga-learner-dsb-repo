@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAdmin } from '../../contexts/AdminContext';
+import { useAdmin } from '../contexts/AdminContext';
 import { LayoutDashboard, Package, Building2, MessageSquare, LogOut, Menu, X } from 'lucide-react';
-import { Button } from '../../components/ui/button';
+import { Button } from './ui/button';
 
 const AdminLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
