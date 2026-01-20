@@ -371,6 +371,20 @@ async def upload_file(file: UploadFile = File(...), username: str = Depends(get_
     
     return {"url": file_url, "filename": unique_filename}
 
+# Download Project Route
+@api_router.get("/download-project")
+async def download_project():
+    from fastapi.responses import FileResponse
+    zip_path = "/app/maitreyee-hydro-website.zip"
+    if os.path.exists(zip_path):
+        return FileResponse(
+            path=zip_path,
+            filename="maitreyee-hydro-website.zip",
+            media_type="application/zip"
+        )
+    else:
+        raise HTTPException(status_code=404, detail="File not found")
+
 # Include the router in the main app
 app.include_router(api_router)
 
