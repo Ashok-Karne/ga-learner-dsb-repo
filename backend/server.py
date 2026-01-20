@@ -19,6 +19,10 @@ from auth import verify_password, get_password_hash, create_access_token, verify
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+# Create uploads directory if it doesn't exist
+UPLOAD_DIR = ROOT_DIR / 'uploads'
+UPLOAD_DIR.mkdir(exist_ok=True)
+
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
@@ -26,6 +30,9 @@ db = client[os.environ['DB_NAME']]
 
 # Create the main app
 app = FastAPI()
+
+# Mount uploads directory for static file serving
+app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
