@@ -1,5 +1,6 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Depends, Header
+from fastapi import FastAPI, APIRouter, HTTPException, Depends, Header, UploadFile, File
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -7,6 +8,8 @@ import os
 import logging
 from pathlib import Path
 from typing import List, Optional
+import shutil
+import uuid
 from models import (
     Product, ProductCreate, CompanyInfo, Inquiry, InquiryCreate,
     Category, CategoryCreate, AdminLogin, AdminCreate, Stats
