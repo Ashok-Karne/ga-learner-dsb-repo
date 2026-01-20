@@ -11,68 +11,60 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Products', path: '/products' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Our Products', path: '/products' },
+    { name: 'Profile', path: '/about' },
+    { name: 'Contact Us', path: '/contact' }
   ];
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white shadow-sm sticky top-0 z-50">
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-2">
-        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
+      <div className="bg-blue-600 text-white py-2">
+        <div className="container mx-auto px-4 flex justify-between items-center text-xs">
           <div className="flex items-center gap-4">
-            <span className="hidden md:inline">Mumbai, Maharashtra</span>
-            <span className="hidden md:inline">GST: 27ACJPK5215E1ZT</span>
+            <span>Mumbai, Maharashtra</span>
+            <span className="hidden md:inline">GST No: 27ACJPK5215E1ZT</span>
+            <span className="hidden md:inline bg-yellow-500 text-gray-900 px-2 py-0.5 rounded text-xs font-semibold">TrustSEAL Verified</span>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="tel:+918046077653" className="flex items-center gap-1 hover:text-blue-100 transition-colors">
+          <div className="flex items-center gap-3">
+            <a href="tel:+918046077653" className="flex items-center gap-1 hover:text-blue-100">
               <Phone className="w-3 h-3" />
-              <span>+91-8046077653</span>
+              <span>Call +91-8046077653</span>
             </a>
-            <a href="mailto:info@maitreyeehydro.com" className="flex items-center gap-1 hover:text-blue-100 transition-colors">
-              <Mail className="w-3 h-3" />
-              <span className="hidden md:inline">info@maitreyeehydro.com</span>
-            </a>
+            <Button size="sm" className="bg-blue-700 hover:bg-blue-800 h-6 text-xs px-3">
+              SEND EMAIL
+            </Button>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">MH</span>
+            <div className="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+              <span className="text-white font-bold text-sm">MH</span>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-800">Maitreyee Hydro Systems</h1>
-              <p className="text-xs text-gray-600">Since 2006</p>
+              <h1 className="text-lg font-bold text-gray-900">Maitreyee Hydro Systems</h1>
+              <p className="text-xs text-gray-600">Mumbai, Maharashtra</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-gray-700 hover:text-blue-600 font-medium transition-colors relative group ${
-                  isActive(link.path) ? 'text-blue-600' : ''
+                className={`px-4 py-2 text-sm font-medium hover:bg-gray-100 rounded transition-colors ${
+                  isActive(link.path) ? 'text-blue-600 bg-gray-50' : 'text-gray-700'
                 }`}
               >
                 {link.name}
-                <span
-                  className={`absolute bottom-[-8px] left-0 w-full h-0.5 bg-blue-600 transform transition-transform ${
-                    isActive(link.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`}
-                />
               </Link>
             ))}
-            <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
-              Get Quote
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,19 +83,14 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`block py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 px-4 rounded transition-colors ${
-                  isActive(link.path) ? 'text-blue-600 bg-blue-50' : ''
+                className={`block py-2 text-sm hover:bg-gray-50 px-4 rounded ${
+                  isActive(link.path) ? 'text-blue-600 bg-gray-50 font-medium' : 'text-gray-700'
                 }`}
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </Link>
             ))}
-            <div className="px-4 pt-3">
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
-                Get Quote
-              </Button>
-            </div>
           </div>
         )}
       </div>

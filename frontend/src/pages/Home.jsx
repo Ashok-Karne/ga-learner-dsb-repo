@@ -1,196 +1,179 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, TrendingUp, Users, Award, Phone } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { products, stats, companyInfo } from '../mock';
+import { products, companyInfo } from '../mock';
+import { CheckCircle } from 'lucide-react';
 
 const Home = () => {
-  const featuredProducts = products.slice(0, 6);
+  const featuredProducts = products.slice(0, 8);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-20 md:py-32">
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero/Featured Product Section */}
+      <section className="bg-white py-8">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-block">
-                <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
-                  Trusted Since 2006
-                </span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Premium Hydro Solutions for Modern Living
-              </h1>
-              <p className="text-lg text-gray-600">
-                Leading manufacturer and supplier of high-quality steam bath generators, sauna systems, swimming pool equipment, and hydro pneumatic pumps.
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=80"
+                alt="Featured Product"
+                className="rounded-lg shadow-md w-full"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Pressure Booster Pump
+              </h2>
+              <p className="text-2xl text-blue-600 font-bold mb-4">
+                Price: ₹ 12,000 / Piece
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link to="/products">
-                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
-                    Explore Products <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-                <Link to="/contact">
-                  <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
-                    Contact Us
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="relative z-10">
-                <img
-                  src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=80"
-                  alt="Hydro Systems"
-                  className="rounded-2xl shadow-2xl"
-                />
-              </div>
-              <div className="absolute top-10 -right-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-50 -z-10" />
-              <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-cyan-200 rounded-full blur-3xl opacity-50 -z-10" />
+              <p className="text-gray-700 mb-6">
+                Pressure Booster Pump - We are engaged in offering this product to our clients. Our range of all products is widely appreciated by our clients. Domestic & Commercial applications, High efficiency, Durable construction.
+              </p>
+              <Button className="bg-orange-500 hover:bg-orange-600 font-semibold">
+                Get Best Quote
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-cyan-600 py-12">
+      {/* Our Products Section */}
+      <section className="py-8">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center text-white">
-                <div className="text-3xl md:text-4xl font-bold mb-2">{stat.value}</div>
-                <div className="text-blue-100">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-gray-300 pb-2">
+            Our Products
+          </h2>
 
-      {/* Featured Products */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Featured Products
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Discover our premium range of hydro systems designed for durability, efficiency, and performance.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg overflow-hidden">
-                <div className="relative overflow-hidden">
+              <Card key={product.id} className="hover:shadow-lg transition-shadow">
+                <div className="relative">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-48 object-cover"
                   />
-                  <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-md">
-                    <span className="text-blue-600 font-semibold text-sm">₹{product.price.toLocaleString()}</span>
-                  </div>
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <CardContent className="p-4">
+                  <h3 className="text-sm font-semibold text-gray-900 mb-2 hover:text-blue-600 cursor-pointer">
                     {product.name}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {product.description}
+                  <p className="text-blue-600 font-bold text-sm mb-2">
+                    Price: ₹ {product.price.toLocaleString()} / {product.priceUnit}
                   </p>
-                  <Button variant="outline" className="w-full group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-colors">
-                    View Details
+                  <Button size="sm" className="w-full bg-orange-500 hover:bg-orange-600 text-xs font-semibold">
+                    Get Best Quote
                   </Button>
                 </CardContent>
               </Card>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="text-center mt-12">
-            <Link to="/products">
-              <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
-                View All Products <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
+      {/* About Company */}
+      <section className="bg-blue-600 text-white py-8">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold mb-6">About Company</h2>
+          <div className="grid md:grid-cols-4 gap-6 mb-6">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-white text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">i</div>
+                <div>
+                  <p className="text-xs text-blue-200">Nature of Business</p>
+                  <p className="font-semibold">{companyInfo.natureOfBusiness}</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-white text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">i</div>
+                <div>
+                  <p className="text-xs text-blue-200">GST Registration Date</p>
+                  <p className="font-semibold">{companyInfo.gstRegistrationDate}</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-white text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">i</div>
+                <div>
+                  <p className="text-xs text-blue-200">Legal Status of Firm</p>
+                  <p className="font-semibold">{companyInfo.legalStatus}</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-white text-blue-600 rounded-full flex items-center justify-center text-sm font-bold">i</div>
+                <div>
+                  <p className="text-xs text-blue-200">GST No.</p>
+                  <p className="font-semibold text-sm">{companyInfo.gstNo}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <p className="text-white mb-4">
+            We <strong>Maitreyee Hydro Systems</strong> from <strong>2006</strong> are a highly popular organization of the market engaged in manufacturing and trading a wide range of <strong>Steam Bath Generator, Sauna Bath System and much more.</strong>
+          </p>
+          <Link to="/about">
+            <Button variant="outline" className="bg-white text-blue-600 hover:bg-gray-100">
+              Read More
+            </Button>
+          </Link>
+
+          {/* Trust Seal */}
+          <div className="mt-6 flex items-center gap-3">
+            <div className="bg-yellow-400 text-gray-900 px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2">
+              <CheckCircle className="w-5 h-5" />
+              IndiaMART Trust Seal Verified
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="bg-gray-50 py-20">
+      {/* Contact Form Section */}
+      <section className="bg-white py-8">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Us
+          <div className="max-w-md mx-auto">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+              Get Instant Quote
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We deliver excellence through quality products, reliable service, and customer satisfaction.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: <Award className="w-8 h-8" />,
-                title: 'Quality Products',
-                description: 'Premium quality hydro systems manufactured to highest standards'
-              },
-              {
-                icon: <Users className="w-8 h-8" />,
-                title: 'Expert Team',
-                description: 'Experienced professionals dedicated to customer satisfaction'
-              },
-              {
-                icon: <TrendingUp className="w-8 h-8" />,
-                title: 'Industry Leader',
-                description: '18+ years of excellence in hydro solutions'
-              },
-              {
-                icon: <CheckCircle className="w-8 h-8" />,
-                title: 'Trusted Service',
-                description: 'Reliable after-sales support and warranty coverage'
-              }
-            ].map((feature, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    {feature.icon}
+            <p className="text-center text-gray-600 mb-6">Tell Us What Are You Looking For ?</p>
+            
+            <Card>
+              <CardContent className="p-6">
+                <form className="space-y-4">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                    />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-cyan-600 py-16">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="text-white">
-              <h2 className="text-3xl font-bold mb-2">Ready to Get Started?</h2>
-              <p className="text-blue-100">Contact us today for a free consultation and quote</p>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
-                  Get Quote Now
-                </Button>
-              </Link>
-              <a href="tel:+918046077653">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                  <Phone className="mr-2 w-4 h-4" /> Call Now
-                </Button>
-              </a>
-            </div>
+                  <div>
+                    <input
+                      type="tel"
+                      placeholder="Mobile Number"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      placeholder="Describe Your Requirement"
+                      rows={4}
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                    />
+                  </div>
+                  <Button className="w-full bg-orange-500 hover:bg-orange-600 font-semibold">
+                    Submit Requirement
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
